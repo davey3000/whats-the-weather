@@ -1,0 +1,16 @@
+name: Node.js (with nave) CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - run: ./venv yarn
+    - run: ./venv yarn build
+    - run: ./venv yarn test
+      env:
+        CI: true
