@@ -9,8 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: ./venv yarn
-    - run: ./venv yarn build
-    - run: ./venv yarn test
+    - run: ./venv.sh yarn
+    - run: ./venv.sh yarn build
+    - run: ./venv.sh yarn test
       env:
         CI: true
