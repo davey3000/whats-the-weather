@@ -9,10 +9,12 @@ import {
     withStyles,
     Button,
     Icon,
+    IconButton,
     TextField,
     Theme,
     WithStyles
 } from '@material-ui/core';
+import withWidth, { isWidthDown, WithWidth } from '@material-ui/core/withWidth';
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -27,7 +29,7 @@ const styles = (theme: Theme) => createStyles({
     }
 });
 
-interface Props extends WithStyles<typeof styles> {
+interface Props extends WithStyles<typeof styles>, WithWidth {
     // Inform parent that the forecast and forecast location have been updated
     setLocationAndForecast: (lat: number, lng: number, forecast: Array<any>) => void
 }
@@ -80,13 +82,12 @@ class SearchBar extends React.Component<Props, State> {
             const pos = await this.lookupLocation(searchLocation);
             const current = await this.lookupCurrentWeather(pos.lat, pos.lng);
             const forecast = current.concat(await this.lookupWeatherForecast(pos.lat, pos.lng));
-            console.log("forecast", current);
 
             // Pass results to the parent component
             this.props.setLocationAndForecast(pos.lat, pos.lng, forecast);
         } catch(err) {
             // REVISIT: Flag an error to the user when location or forecast not found
-            console.log(err);
+            console.error(err);
         }
     }
 
@@ -124,7 +125,6 @@ class SearchBar extends React.Component<Props, State> {
         Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
         const resp = await fetch(url.toString());
         const data = await resp.json();
-        console.log("lookupCurrentWeather()", data);
         if (data && data.cod === 200) {
             return [data];
         }
@@ -150,8 +150,10 @@ class SearchBar extends React.Component<Props, State> {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, width } = this.props;
         const { searchLocation } = this.state;
+
+        const showIconButton = isWidthDown('xs', width);
 
         return (
             <div className={classes.root}>
@@ -163,18 +165,27 @@ class SearchBar extends React.Component<Props, State> {
                       value={searchLocation}
                       onChange={(evt) => { this.handleLocationChange(evt); }}
                     />
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      endIcon={<Icon>search</Icon>}
-                      onClick={(evt) => { this.handleSearch(evt); }}
-                    >
-                        Search
-                    </Button>
+                    { showIconButton ? (
+                        <IconButton
+                          aria-label="search"
+                          type="submit"
+                          onClick={(evt) => { this.handleSearch(evt); }}
+                          >
+                            <Icon>search</Icon>
+                        </IconButton>) : (
+                        <Button
+                          type="submit"
+                          variant="contained"
+                          endIcon={<Icon>search</Icon>}
+                          onClick={(evt) => { this.handleSearch(evt); }}
+                        >
+                            Search
+                        </Button>
+                    )}
                 </form>
             </div>
         );
     }
 }
 
-export default withStyles(styles)(SearchBar);
+export default withStyles(styles)(withWidth()(SearchBar));

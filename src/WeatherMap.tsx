@@ -17,7 +17,10 @@ const styles = (theme: Theme) => createStyles({
         flex: 1
     },
     map: {
-        height: "500px"
+        height: "500px",
+        [theme.breakpoints.down('xs')]: {
+            height: "300px"
+        }
     }
 });
 

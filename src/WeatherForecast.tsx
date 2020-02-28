@@ -13,12 +13,16 @@ import {
     Theme,
     WithStyles
 } from '@material-ui/core';
+import withWidth, { isWidthDown, WithWidth } from '@material-ui/core/withWidth';
 
 const styles = (theme: Theme) => createStyles({
     root: {
         flex: 1,
         display: "flex",
-        flexDirection: "column"
+        flexDirection: "column",
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: "row"
+        }
     },
     tempSelector: {
         float: "left",
@@ -39,12 +43,16 @@ const styles = (theme: Theme) => createStyles({
             fontSize: "3rem"
         },
         [theme.breakpoints.down('sm')]: {
-            fontSize: "2.5rem"
+            fontSize: "2rem"
+        },
+        [theme.breakpoints.down('xs')]: {
+            flex: 1,
+            flexDirection: "column"
         }
     }
 });
 
-interface Props extends WithStyles<typeof styles> {
+interface Props extends WithStyles<typeof styles>, WithWidth {
     // Array of weather forecasts (time-ordered; ascending) where the first
     // entry is the current weather
     forecast: Array<any>,
@@ -118,7 +126,7 @@ class WeatherForecast extends React.Component<Props, State> {
     }
 
     render() {
-        const { classes } = this.props;
+        const { classes, width } = this.props;
         const { valid, icon, temp, tempCelsius, pressure } = this.state;
 
         // URL to an icon that represents the weather conditions
@@ -129,30 +137,56 @@ class WeatherForecast extends React.Component<Props, State> {
                                           : ~~(((temp-273.15)*1.8)+32);
         const tempUnits = tempCelsius ? "°C" : "°F";
 
-        return (
-            <div className={classes.root}>
-                { valid ?
-                    <>
-                        <div className={classes.tempSelector}>
-                            <ButtonGroup color="primary" aria-label="outlined primary button group">
-                                <Button onClick={() => { this.handleSelectCelsius(); }}>°C</Button>
-                                <Button onClick={() => { this.handleSelectFahrenheit(); }}>°F</Button>
-                            </ButtonGroup>
-                        </div>
-                        <div className={classes.weatherIcon} style={{backgroundImage: 'url("' + weatherIconPath + '")'}}>
-                        </div>
-                        <div className={classes.tempPressure}>
-                            <Box>
-                                {tempConverted}{tempUnits}
-                            </Box>
-                            <Box>
-                                {pressure}mB
-                            </Box>
-                        </div>
-                    </> : null}
-            </div>
-        );
+        // For mobile screen sizes, use a different layout
+        if (isWidthDown('xs', width)) {
+            return (
+                <div className={classes.root}>
+                    { valid ?
+                        <>
+                            <div className={classes.weatherIcon} style={{backgroundImage: 'url("' + weatherIconPath + '")'}}>
+                            </div>
+                            <div className={classes.tempPressure}>
+                                <Box>
+                                    {tempConverted}{tempUnits}
+                                </Box>
+                                <Box>
+                                    {pressure}mB
+                                </Box>
+                                <ButtonGroup color="primary" aria-label="outlined primary button group">
+                                    <Button onClick={() => { this.handleSelectCelsius(); }}>°C</Button>
+                                    <Button onClick={() => { this.handleSelectFahrenheit(); }}>°F</Button>
+                                </ButtonGroup>
+                            </div>
+                        </> : null}
+                </div>
+            );
+        } else {
+            // Full-size layout
+            return (
+                <div className={classes.root}>
+                    { valid ?
+                        <>
+                            <div className={classes.tempSelector}>
+                                <ButtonGroup color="primary" aria-label="outlined primary button group">
+                                    <Button onClick={() => { this.handleSelectCelsius(); }}>°C</Button>
+                                    <Button onClick={() => { this.handleSelectFahrenheit(); }}>°F</Button>
+                                </ButtonGroup>
+                            </div>
+                            <div className={classes.weatherIcon} style={{backgroundImage: 'url("' + weatherIconPath + '")'}}>
+                            </div>
+                            <div className={classes.tempPressure}>
+                                <Box>
+                                    {tempConverted}{tempUnits}
+                                </Box>
+                                <Box>
+                                    {pressure}mB
+                                </Box>
+                            </div>
+                        </> : null}
+                </div>
+            );
+        }
     }
 }
 
-export default withStyles(styles)(WeatherForecast);
+export default withStyles(styles)(withWidth()(WeatherForecast));

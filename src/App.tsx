@@ -18,6 +18,7 @@ import {
     Theme,
     WithStyles
 } from '@material-ui/core';
+import withWidth, { isWidthDown, WithWidth } from '@material-ui/core/withWidth';
 
 import ForecastSelector from './ForecastSelector';
 import SearchBar from './SearchBar';
@@ -28,7 +29,7 @@ const styles = (theme: Theme) => createStyles({
     root: {
         padding: theme.spacing(2)
     },
-    desktopLayout: {
+    topLevelLayout: {
         display: "flex",
         flexDirection: "column"
     },
@@ -37,7 +38,7 @@ const styles = (theme: Theme) => createStyles({
     }
 });
 
-interface Props extends WithStyles<typeof styles> {
+interface Props extends WithStyles<typeof styles>, WithWidth {
 }
 interface State {
     // Weather forecast location
@@ -90,48 +91,88 @@ class App extends React.Component<Props, State> {
     }
     
     render() {
-        const { classes } = this.props;
+        const { classes, width } = this.props;
         const { firstLookupDone, forecast, forecastSelection,
                 targetPos } = this.state;
 
-        return (
-            <div className={classes.root}>
-                <CssBaseline />
-                <Container component="main" maxWidth="lg">
-                    <Paper>
-                        <div className={classes.desktopLayout}>
-                            <SearchBar
-                              setLocationAndForecast={
-                                (lat, lng, forecast) => {
-                                    this.setLocationAndForecast(lat, lng, forecast); }}
-                            >
-                            </SearchBar>
-                            { firstLookupDone ?
-                                <>
-                                    <div className={classes.desktopWeatherBox}>
+        // For mobile screen sizes, use a different layout
+        if (isWidthDown('xs', width)) {
+            return (
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <Container component="main" maxWidth="lg">
+                        <Paper>
+                            <div className={classes.topLevelLayout}>
+                                <SearchBar
+                                  setLocationAndForecast={
+                                    (lat, lng, forecast) => {
+                                        this.setLocationAndForecast(lat, lng, forecast); }}
+                                >
+                                </SearchBar>
+                                { firstLookupDone ?
+                                    <>
+                                        <WeatherForecast
+                                            forecast={forecast}
+                                            forecastSelection={forecastSelection}>
+                                        </WeatherForecast>
+                                        <ForecastSelector
+                                          forecast={forecast}
+                                          setForecastSelection={
+                                            (index) => { this.setForecastSelection(index); }}
+                                        >
+                                        </ForecastSelector>
                                         <WeatherMap
                                           targetPos={targetPos}
                                         >
                                         </WeatherMap>
-                                        <WeatherForecast
+                                    </>
+                                : null}
+                            </div>
+                        </Paper>
+                    </Container>
+                </div>
+            );
+        } else {
+            // Full-size layout
+            return (
+                <div className={classes.root}>
+                    <CssBaseline />
+                    <Container component="main" maxWidth="lg">
+                        <Paper>
+                            <div className={classes.topLevelLayout}>
+                                <SearchBar
+                                  setLocationAndForecast={
+                                    (lat, lng, forecast) => {
+                                        this.setLocationAndForecast(lat, lng, forecast); }}
+                                >
+                                </SearchBar>
+                                { firstLookupDone ?
+                                    <>
+                                        <div className={classes.desktopWeatherBox}>
+                                            <WeatherMap
+                                              targetPos={targetPos}
+                                            >
+                                            </WeatherMap>
+                                            <WeatherForecast
+                                              forecast={forecast}
+                                              forecastSelection={forecastSelection}>
+                                            </WeatherForecast>
+                                        </div>
+                                        <ForecastSelector
                                           forecast={forecast}
-                                          forecastSelection={forecastSelection}>
-                                        </WeatherForecast>
-                                    </div>
-                                    <ForecastSelector
-                                      forecast={forecast}
-                                      setForecastSelection={
-                                        (index) => { this.setForecastSelection(index); }}
-                                      >
-                                    </ForecastSelector>
-                                </>
-                            : null}
-                        </div>
-                    </Paper>
-                </Container>
-            </div>
-        );
+                                          setForecastSelection={
+                                            (index) => { this.setForecastSelection(index); }}
+                                        >
+                                        </ForecastSelector>
+                                    </>
+                                : null}
+                            </div>
+                        </Paper>
+                    </Container>
+                </div>
+            );
+        }
     }
 }
 
-export default withStyles(styles)(App);
+export default withStyles(styles)(withWidth()(App));
