@@ -57,6 +57,12 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
+### API keys
+
+This app requires an API key to access weather forecast data from the open API.
+A key has been registered and is assigned to the constant `FORECAST_API_KEY` in
+`src/SearchBar.tsx`.  If you want/need to register a new API key, visit the
+[OpenWeatherMap website](https://openweathermap.org/api) for more information.
 
 ## Credits
 
@@ -65,3 +71,8 @@ package, uses the software packages indicated in `yarn.lock` (see individual
 packages for license terms), and also uses the following resources:
 
 * App icon: https://iconmonstr.com/weather-8-svg/ [[license]](https://iconmonstr.com/license/)
+
+It also relies on the open APIs provided by:
+
+* [OpenWeatherMap](https://openweathermap.org)
+* [OpenStreetMap](https://openstreetmap.org)
