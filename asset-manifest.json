@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/whats-the-weather/static/css/main.5ecd60fb.chunk.css",
-    "main.js": "/whats-the-weather/static/js/main.e35d044f.chunk.js",
-    "main.js.map": "/whats-the-weather/static/js/main.e35d044f.chunk.js.map",
-    "runtime-main.js": "/whats-the-weather/static/js/runtime-main.2c74523e.js",
-    "runtime-main.js.map": "/whats-the-weather/static/js/runtime-main.2c74523e.js.map",
-    "static/css/2.7f75bbe2.chunk.css": "/whats-the-weather/static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.bc06985d.chunk.js": "/whats-the-weather/static/js/2.bc06985d.chunk.js",
-    "static/js/2.bc06985d.chunk.js.map": "/whats-the-weather/static/js/2.bc06985d.chunk.js.map",
-    "index.html": "/whats-the-weather/index.html",
-    "precache-manifest.be50762545b5ad6bc16610d2f9aa641d.js": "/whats-the-weather/precache-manifest.be50762545b5ad6bc16610d2f9aa641d.js",
-    "service-worker.js": "/whats-the-weather/service-worker.js",
-    "static/css/2.7f75bbe2.chunk.css.map": "/whats-the-weather/static/css/2.7f75bbe2.chunk.css.map",
-    "static/css/main.5ecd60fb.chunk.css.map": "/whats-the-weather/static/css/main.5ecd60fb.chunk.css.map",
-    "static/js/2.bc06985d.chunk.js.LICENSE.txt": "/whats-the-weather/static/js/2.bc06985d.chunk.js.LICENSE.txt"
+    "main.css": "/static/css/main.5ecd60fb.chunk.css",
+    "main.js": "/static/js/main.5a1452b5.chunk.js",
+    "main.js.map": "/static/js/main.5a1452b5.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.87f0263c.js",
+    "runtime-main.js.map": "/static/js/runtime-main.87f0263c.js.map",
+    "static/css/2.7f75bbe2.chunk.css": "/static/css/2.7f75bbe2.chunk.css",
+    "static/js/2.cdcf3282.chunk.js": "/static/js/2.cdcf3282.chunk.js",
+    "static/js/2.cdcf3282.chunk.js.map": "/static/js/2.cdcf3282.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.20db1c813445d95b2d4d5333b637ed25.js": "/precache-manifest.20db1c813445d95b2d4d5333b637ed25.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/2.7f75bbe2.chunk.css.map": "/static/css/2.7f75bbe2.chunk.css.map",
+    "static/css/main.5ecd60fb.chunk.css.map": "/static/css/main.5ecd60fb.chunk.css.map",
+    "static/js/2.cdcf3282.chunk.js.LICENSE.txt": "/static/js/2.cdcf3282.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.2c74523e.js",
+    "static/js/runtime-main.87f0263c.js",
     "static/css/2.7f75bbe2.chunk.css",
-    "static/js/2.bc06985d.chunk.js",
+    "static/js/2.cdcf3282.chunk.js",
     "static/css/main.5ecd60fb.chunk.css",
-    "static/js/main.e35d044f.chunk.js"
+    "static/js/main.5a1452b5.chunk.js"
   ]
 }
