@@ -4,6 +4,8 @@
 
 ![Node.js (with nave) CI](https://github.com/davey3000/whats-the-weather/workflows/Node.js%20(with%20nave)%20CI/badge.svg?branch=master)
 
+**[Try the live app here.](https://davey3000.github.io/whats-the-weather/)**
+
 A web app that uses open APIs to report the current and forecasted weather for
 a location specified by the user.
 
