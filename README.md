@@ -1,3 +1,5 @@
+![Screenshot](/../gh-pages/screenshots/screenshot-main-ui.png?raw=true "Screenshot")
+
 # What's the Weather?
 
 ![Node.js (with nave) CI](https://github.com/davey3000/whats-the-weather/workflows/Node.js%20(with%20nave)%20CI/badge.svg?branch=master)
