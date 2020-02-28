@@ -113,7 +113,9 @@ class App extends React.Component<Props, State> {
                                     <>
                                         <WeatherForecast
                                             forecast={forecast}
-                                            forecastSelection={forecastSelection}>
+                                            forecastSelection={forecastSelection}
+                                            mobileView={true}
+                                        >
                                         </WeatherForecast>
                                         <ForecastSelector
                                           forecast={forecast}
@@ -155,7 +157,9 @@ class App extends React.Component<Props, State> {
                                             </WeatherMap>
                                             <WeatherForecast
                                               forecast={forecast}
-                                              forecastSelection={forecastSelection}>
+                                              forecastSelection={forecastSelection}
+                                              mobileView={false}
+                                            >
                                             </WeatherForecast>
                                         </div>
                                         <ForecastSelector

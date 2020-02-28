@@ -13,7 +13,6 @@ import {
     Theme,
     WithStyles
 } from '@material-ui/core';
-import withWidth, { isWidthDown, WithWidth } from '@material-ui/core/withWidth';
 
 const styles = (theme: Theme) => createStyles({
     root: {
@@ -52,20 +51,23 @@ const styles = (theme: Theme) => createStyles({
     }
 });
 
-interface Props extends WithStyles<typeof styles>, WithWidth {
+interface Props extends WithStyles<typeof styles> {
     // Array of weather forecasts (time-ordered; ascending) where the first
     // entry is the current weather
     forecast: Array<any>,
 
     // Index (in the forecast array) of the forecast to display
-    forecastSelection: number
+    forecastSelection: number,
+
+    mobileView: boolean
 }
 interface State {
     valid: boolean,       // forecast is valid
     icon: string,         // name of icon summarising the conditions
     temp: number,         // temperature in Kelvin
     pressure: number,     // pressure in mB,
-    tempCelsius: boolean  // true for celsius, false for fahrenheit
+    tempCelsius: boolean,  // true for celsius, false for fahrenheit
+    mobileView: boolean
 }
 
 class WeatherForecast extends React.Component<Props, State> {
@@ -76,7 +78,8 @@ class WeatherForecast extends React.Component<Props, State> {
         icon: "",
         temp: 0,
         pressure: 0,
-        tempCelsius: true
+        tempCelsius: true,
+        mobileView: false
     }
 
     // Set the initial displayed forecast from the component props
@@ -84,6 +87,9 @@ class WeatherForecast extends React.Component<Props, State> {
         const forecast = this.props.forecast;
         const forecastSelection = this.props.forecastSelection;
         this.updateForecast(forecast, forecastSelection);
+        this.setState({
+            mobileView: this.props.mobileView
+        });
     }
 
     // When the forecast provided by the props changes, update the displayed
@@ -96,6 +102,11 @@ class WeatherForecast extends React.Component<Props, State> {
             const forecast = this.props.forecast;
             const forecastSelection = this.props.forecastSelection;
             this.updateForecast(forecast, forecastSelection);
+        }
+        if (prevProps.mobileView !== this.props.mobileView) {
+            this.setState({
+                mobileView: this.props.mobileView
+            });
         }
     }
 
@@ -126,8 +137,8 @@ class WeatherForecast extends React.Component<Props, State> {
     }
 
     render() {
-        const { classes, width } = this.props;
-        const { valid, icon, temp, tempCelsius, pressure } = this.state;
+        const { classes } = this.props;
+        const { valid, icon, temp, tempCelsius, pressure, mobileView } = this.state;
 
         // URL to an icon that represents the weather conditions
         const weatherIconPath = WeatherForecast.WEATHER_ICON_URL + icon + "@2x.png";
@@ -138,7 +149,7 @@ class WeatherForecast extends React.Component<Props, State> {
         const tempUnits = tempCelsius ? "°C" : "°F";
 
         // For mobile screen sizes, use a different layout
-        if (isWidthDown('xs', width)) {
+        if (mobileView) {
             return (
                 <div className={classes.root}>
                     { valid ?
@@ -189,4 +200,4 @@ class WeatherForecast extends React.Component<Props, State> {
     }
 }
 
-export default withStyles(styles)(withWidth()(WeatherForecast));
+export default withStyles(styles)(WeatherForecast);
