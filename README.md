@@ -68,6 +68,35 @@ A key has been registered and is assigned to the constant `FORECAST_API_KEY` in
 `src/SearchBar.tsx`.  If you want/need to register a new API key, visit the
 [OpenWeatherMap website](https://openweathermap.org/api) for more information.
 
+
+## Deployment
+
+To deploy the web app to GitHub Pages, follow the steps below:
+
+* verify the functionality of the head of the `master` branch (see the
+  [wiki](https://github.com/davey3000/whats-the-weather/wiki) for pre-release
+  tests)
+* create a production build of the web app by running `yarn build`
+* switch to the main publishing branch by running `git checkout gh-pages` and
+  then `git pull`
+* create a new branch by running `git checkout <branch>` and then
+  `git push -u origin <branch>` (replacing `<branch>` with the name you've
+  chosen to give this publishing branch)
+* run these commands in sequence in order to copy the build files into the
+  repository:
+  * `git rm precache-manifest.*`
+  * `cp -a build/* .`
+  * `git add .`
+* commit and push the build by running `git commit` and then `git push`
+* raise a pull request to merge your pushed branch with `gh-pages`, including
+  references to all issues detailing features/fixes included in this deployment
+  (or alternatively just reference the original pull request to `master` that
+  referenced those issues)
+* within a few seconds, the updated web app should be available
+  [here](https://davey3000.github.io/whats-the-weather/)
+* verify that the features/fixes included in this deployment are present in
+  the published web app
+
 ## Credits
 
 This app was initialised using the [Create React App](https://github.com/facebook/create-react-app)
