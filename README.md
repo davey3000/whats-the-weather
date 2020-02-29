@@ -75,7 +75,7 @@ To deploy the web app to GitHub Pages, follow the steps below:
 
 * verify the functionality of the head of the `master` branch (see the
   [wiki](https://github.com/davey3000/whats-the-weather/wiki) for pre-release
-  tests)
+  criteria)
 * create a production build of the web app by running `yarn build`
 * switch to the main publishing branch by running `git checkout gh-pages` and
   then `git pull`
@@ -91,7 +91,9 @@ To deploy the web app to GitHub Pages, follow the steps below:
 * raise a pull request to merge your pushed branch with `gh-pages`, including
   references to all issues detailing features/fixes included in this deployment
   (or alternatively just reference the original pull request to `master` that
-  referenced those issues)
+  referenced those issues; see the
+  [wiki](https://github.com/davey3000/whats-the-weather/wiki) for pull-request
+  acceptance criteria)
 * within a few seconds, the updated web app should be available
   [here](https://davey3000.github.io/whats-the-weather/)
 * verify that the features/fixes included in this deployment are present in
