@@ -96,7 +96,7 @@ export class SearchAndReportForecastSteps {
         const elWeatherLocation = await this.driver?.findElement(By.id("weather-location"));
         const elWeatherSearchButton = await this.driver?.findElement(By.tagName("button"));
         elWeatherLocation?.sendKeys("Cambridge");
-        await this.driver?.sleep(1);  // 1ms delay to ensure the subsequent events occur after the text is updated
+        await this.driver?.sleep(1000);  // delay to allow text to be entered into the input element
     }
 
     @when(/I click the search button/)

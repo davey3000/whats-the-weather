@@ -33,12 +33,12 @@ const capabilities: Array<any> = [
         resolution : "1920x1080",
     },
     {
-        browserName: "ie",
+        browserName: "edge",
         os: "Windows",
         os_version : "10",
         resolution : "1920x1080",
     },
-    {
+    /*{
         os_version: "11",
         device: "iPhone 8 Plus",
         real_mobile: "true",
@@ -49,7 +49,7 @@ const capabilities: Array<any> = [
         device: "Samsung Galaxy S8",
         real_mobile: "true",
         browserName: "Android"
-    },
+    },*/
 ];
 
 capabilities.forEach((caps, index) => {
