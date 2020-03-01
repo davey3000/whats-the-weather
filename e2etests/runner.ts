@@ -10,7 +10,7 @@ import * as child_process from 'child_process';
 import config from './tests/config';
 
 const argv = ["node", "./node_modules/cucumber/bin/cucumber-js", "-p", "default"]
-const totalProcesses = 1; //config.capabilities.length;
+const totalProcesses = config.capabilities.length;
 let processCount = 0;
 let exitCode = 0;
 const processOutput: string[] = [];
@@ -41,5 +41,4 @@ for (let i in config.capabilities) {
             process.exit(exitCode);
         }
     });
-    break;
 }
