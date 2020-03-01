@@ -54,7 +54,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 #### `yarn e2etest`
 
-Runs end-to-end (e2e) tests for a single platform using BrowserStack and Cucumber.
+Runs end-to-end (e2e) tests for a single platform using BrowserStack and Cucumber.<br />
 Test results are shown in the console, and more detailed test data is available
 from the BrowserStack website (results of the latest build tested on BrowserStack
 are available
