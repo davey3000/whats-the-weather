@@ -11,8 +11,13 @@ jobs:
       run: ./venv.sh yarn
     - name: Build for production
       run: ./venv.sh yarn build
-    - name: Tests
-      run: ./venv.sh yarn test
+    - name: Unit tests
       env:
         CI: true
+      run: ./venv.sh yarn test
+    - name: End-to-End (e2e) tests
+      env:
+        BROWSERSTACK_USERNAME: ${{ secrets.BROWSERSTACK_USERNAME }}
+        BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+      run: ./venv.sh yarn e2etest-all
 

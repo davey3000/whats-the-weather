@@ -3,6 +3,7 @@
 # What's the Weather?
 
 ![Node.js (with nave) CI](https://github.com/davey3000/whats-the-weather/workflows/Node.js%20(with%20nave)%20CI/badge.svg?branch=master)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=Yzk3NHBBN0MzenJZNjgxaW4wRU9zNXZsK1hFc09ucDVLaWlHeEE4VFluOD0tLXVpejVqQmRZVTZaQWlPcUxyQzhUZXc9PQ==--5ace2d996166e120bc57cba8b607a824bfa67996)](https://automate.browserstack.com/public-build/Yzk3NHBBN0MzenJZNjgxaW4wRU9zNXZsK1hFc09ucDVLaWlHeEE4VFluOD0tLXVpejVqQmRZVTZaQWlPcUxyQzhUZXc9PQ==--5ace2d996166e120bc57cba8b607a824bfa67996)
 
 **[Try the live app here.](https://davey3000.github.io/whats-the-weather/)**
 
@@ -48,8 +49,21 @@ You will also see any lint errors in the console.
 
 #### `yarn test`
 
-Launches the test runner in the interactive watch mode.<br />
+Launches the unit test runner in the interactive watch mode.<br />
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+#### `yarn e2etest`
+
+Runs end-to-end (e2e) tests for a single platform using BrowserStack and Cucumber.<br />
+Test results are shown in the console, and more detailed test data is available
+from the BrowserStack website (results of the latest build tested on BrowserStack
+are available
+[here](https://automate.browserstack.com/public-build/Yzk3NHBBN0MzenJZNjgxaW4wRU9zNXZsK1hFc09ucDVLaWlHeEE4VFluOD0tLXVpejVqQmRZVTZaQWlPcUxyQzhUZXc9PQ==--5ace2d996166e120bc57cba8b607a824bfa67996)).
+
+
+#### `yarn e2etest`
+
+Runs e2e tests for all platforms.
 
 #### `yarn build`
 

@@ -25,7 +25,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "e2etest": "cucumber-js -p default",
+    "e2etest-all": "ts-node ./e2etests/runner.ts"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -41,5 +43,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/cucumber": "^6.0.1",
+    "@types/express": "^4.17.2",
+    "@types/selenium-webdriver": "^4.0.8",
+    "browserstack-local": "^1.4.5",
+    "cucumber": "^6.0.5",
+    "cucumber-tsflow": "^3.2.0",
+    "express": "^4.17.1",
+    "selenium-webdriver": "^4.0.0-alpha.5",
+    "ts-node": "^8.6.2"
   }
 }
