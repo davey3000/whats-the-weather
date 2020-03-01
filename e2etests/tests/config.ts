@@ -10,7 +10,7 @@ if ("GITHUB_REF" in process.env && "GITHUB_SHA" in process.env) {
 
 const common = {
     project: "What's the Weather?",
-    build: (process.env.GITHUB_SHA as string) || "debug",
+    build: build,
     //name: "1",
     "browserstack.local": true,
     "browserstack.user": process.env.BROWSERSTACK_USERNAME as string,
