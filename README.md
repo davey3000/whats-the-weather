@@ -93,7 +93,7 @@ To deploy the web app to GitHub Pages, follow the steps below:
 * create a production build of the web app by running `yarn build`
 * switch to the main publishing branch by running `git checkout gh-pages` and
   then `git pull`
-* create a new branch by running `git checkout <branch>` and then
+* create a new branch by running `git checkout -b <branch>` and then
   `git push -u origin <branch>` (replacing `<branch>` with the name you've
   chosen to give this publishing branch)
 * run these commands in sequence in order to copy the build files into the
