@@ -76,21 +76,26 @@ class ForecastSelector extends React.Component<Props, State> {
         // Generate an array of slider marks to match the first
         // MAX_FORECAST_ENTRIES forecasts
         const marks: Mark[] = [];
+        let prevDay = 0;
         forecast.forEach((item, index) => {
             if (index < ForecastSelector.MAX_FORECAST_ENTRIES) {
                 const date = new Date(item.dt * 1000);
                 const hours = date.getHours();
+                const day = date.getDay();
+
+                // Show name of the day when the time crosses into a new day
+                const showDay = day !== prevDay;
+
                 const label = index <= 0
                     ? ""
-                    : (hours === 0
-                        ? this.dayToString(date.getDay())
-                        : "");
+                    : (showDay ? this.dayToString(day) : "");
                 const time = (hours >= 10 ? hours.toString() : "0" + hours) + ":00";
                 marks.push({
                     label: label,
                     time: time,
                     value: index
                 });
+                prevDay = day;
             }
         });
         this.setState({
